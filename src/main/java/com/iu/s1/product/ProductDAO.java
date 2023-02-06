@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iu.s1.product.Product_OptionDTO;
@@ -13,53 +17,56 @@ import com.iu.s1.util.DBConnection;
 
 @Repository
 public class ProductDAO {
-	public int setAddProduct(ProductDTO productDTO) throws Exception{
+	@Autowired
+	private SqlSession sqlSession;
+	private final String NAMESPACE="com.iu.s1.product.ProductDAO.";
+	
+	//delete
+	public int setProductDelete(Long productNum) throws Exception{
+		int result =0;
+		//1.DB 연결
 		Connection connection = DBConnection.getConnection();
-		String sql = "INSERT INTO PRODUCT VALUES(?,?,?,0.0)";
+		//2.SQL 생성
+		String sql = "DELETE PRODUCT WHERE PRODUCTNUM=?";
+		//3.미리보내기
 		PreparedStatement st = connection.prepareStatement(sql);
-		st.setLong(1,productDTO.getPRODUCTNUM());
-		st.setString(2,productDTO.getPRODUCTNAME());
-		st.setString(3,productDTO.getPRODUCTDETAIL());
-		//st.setDouble(3,productDTO.getPRODUCTJUMSU());
-		int result = st.executeUpdate();
+		//4.?세팅
+		st.setLong(1, productNum);
+		//5.최종 전송 및 결과 처리
+		result = st.executeUpdate();
+		//6.연결 해제
 		DBConnection.disConnection(st, connection);
+		
 		return result;
+	}
+	
+	//add
+	public int setAddProduct(ProductDTO productDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAddProduct", productDTO);
 		
 	}	
 	
+	//getDetail
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception {
-		Connection connection = DBConnection.getConnection();
-		String sql = "SELECT * FROM PRODUCT WHERE PRODUCTNUM=?";
-		PreparedStatement st = connection.prepareStatement(sql);
-		st.setLong(1,productDTO.getPRODUCTNUM());
-		ResultSet rs = st.executeQuery();
-		if(rs.next()) {
-			productDTO = new ProductDTO();
-			productDTO.setPRODUCTNUM(rs.getLong("PRODUCTNUM"));
-			productDTO.setPRODUCTNAME(rs.getString("PRODUCTNAME"));
-			productDTO.setPRODUCTDETAIL(rs.getString("PRODUCTDETAIL"));
-			productDTO.setPRODUCTJUMSU(rs.getDouble("PRODUCTJUMSU"));
-		}
-		return productDTO;
-		
+		return sqlSession.selectOne(NAMESPACE+"getProductDetail", productDTO);
+		//selectone은 1개만 받아올 수 있음
 	}
 	
+	//getList
 	public List<ProductDTO> getProductList() throws Exception{
-		ArrayList<ProductDTO> ar = new ArrayList<ProductDTO>();
-		Connection connection= DBConnection.getConnection();
-		String sql = "SELECT PRODUCTNUM, PRODUCTNAME, PRODUCTJUMSU FROM PRODUCT ORDER BY PRODUCTJUMSU DESC";
+		return sqlSession.selectList(NAMESPACE+"getProductList");
+	}
+	
+	//getNum
+	public Long getpProductNum() throws Exception {
+		Connection connection = DBConnection.getConnection();
+		String sql = "SELECT BANK_SEQ.NEXTVAL FROM DUAL";
 		PreparedStatement st = connection.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
-		while (rs.next()) {
-			ProductDTO productDTO = new ProductDTO();
-			productDTO.setPRODUCTNUM(rs.getLong("PRODUCTNUM"));
-			productDTO.setPRODUCTNAME(rs.getString("PRODUCTNAME"));
-			productDTO.setPRODUCTJUMSU(rs.getDouble("PRODUCTJUMSU"));
-			ar.add(productDTO);
-		}
+		rs.next();
+		Long num = rs.getLong(1);
 		DBConnection.disConnection(rs, st, connection);
-		return ar;
-		
+		return num;
 	}
 //	----------------------------------------------------------------------
 	public int setAddProductOption(Product_OptionDTO product_OptionDTO) throws Exception {
@@ -91,17 +98,8 @@ public class ProductDAO {
 		DBConnection.disConnection(rs, st, connection);
 		return arr;
 	}
-//	-------------------------------------------------------------------
-	public Long getpProductNum() throws Exception {
-		Connection connection = DBConnection.getConnection();
-		String sql = "SELECT BANK_SEQ.NEXTVAL FROM DUAL";
-		PreparedStatement st = connection.prepareStatement(sql);
-		ResultSet rs = st.executeQuery();
-		rs.next();
-		Long num = rs.getLong(1);
-		DBConnection.disConnection(rs, st, connection);
-		return num;
-	}
+
+
 	
 	
 	public static void main(String[] args) {
