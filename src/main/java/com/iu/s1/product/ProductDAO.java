@@ -27,8 +27,8 @@ public class ProductDAO {
 	}
 	
 	//add
-	public int setAddProduct(ProductDTO productDTO) throws Exception{
-		return sqlSession.insert(NAMESPACE+"setAddProduct", productDTO);
+	public int setProductAdd(ProductDTO productDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setProductAdd", productDTO);
 		
 	}	
 	
@@ -45,24 +45,17 @@ public class ProductDAO {
 	
 	//getNum
 	public Long getpProductNum() throws Exception {
-		Connection connection = DBConnection.getConnection();
-		String sql = "SELECT BANK_SEQ.NEXTVAL FROM DUAL";
-		PreparedStatement st = connection.prepareStatement(sql);
-		ResultSet rs = st.executeQuery();
-		rs.next();
-		Long num = rs.getLong(1);
-		DBConnection.disConnection(rs, st, connection);
-		return num;
+		return sqlSession.selectOne(NAMESPACE+"getProductNum");
 	}
 //	----------------------------------------------------------------------
 	public int setAddProductOption(Product_OptionDTO product_OptionDTO) throws Exception {
 		Connection connection = DBConnection.getConnection();
-		String sql = "INSERT INTO PRODUCT_OPTION VALUES(BANK_SEQ.NEXTVAL,?,?,?,?";
+		String sql = "INSERT INTO PRODUCTOPTION VALUES(PRODUCT_SEQ.NEXTVAL,?,?,?,?";
 		PreparedStatement st = connection.prepareStatement(sql);
-		st.setLong(1,product_OptionDTO.getPRODUCTNUM());
-		st.setString(2,product_OptionDTO.getOPTIONNAME());
-		st.setLong(3, product_OptionDTO.getOPTIONPRICE());
-		st.setLong(4,product_OptionDTO.getJEGO());
+		st.setLong(1,product_OptionDTO.getProductNum());
+		st.setString(2,product_OptionDTO.getOptionName());
+		st.setLong(3, product_OptionDTO.getOptionPrice());
+		st.setLong(4,product_OptionDTO.getOptionStock());
 		int result = st.executeUpdate();
 		DBConnection.disConnection(st, connection);
 		return result;
@@ -70,19 +63,19 @@ public class ProductDAO {
 		
 	}
 	public List<Product_OptionDTO> getProduct_OptionList() throws Exception{
-		List<Product_OptionDTO> arr = new ArrayList<Product_OptionDTO>();
+		List<Product_OptionDTO> ar = new ArrayList<Product_OptionDTO>();
 		Connection connection = DBConnection.getConnection();
-		String sql = "SELECT * FROM PRODUCT_OPTION ";
+		String sql = "SELECT * FROM PRODUCTOPTION ";
 		PreparedStatement st =connection.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
 			Product_OptionDTO product_OptionDTO = new Product_OptionDTO();
-			product_OptionDTO.setOPTIONNUM(rs.getLong("OPTIONNUM"));
-			product_OptionDTO.setPRODUCTNUM(rs.getLong("PRODUCTNUM"));
-			arr.add(product_OptionDTO);
+			product_OptionDTO.setOptionNum(rs.getLong("OPTIONNUM"));
+			product_OptionDTO.setProductNum(rs.getLong("PRODUCTNUM"));
+			ar.add(product_OptionDTO);
 		}
 		DBConnection.disConnection(rs, st, connection);
-		return arr;
+		return ar;
 	}
 
 

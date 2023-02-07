@@ -13,13 +13,13 @@
 <body>
 
 	<h1> product List</h1>
-	<a href = "./detail?PRODUCTNUM=11" >productDetail</a>
+	<a href = "./detail?productNum=11" >productDetail</a>
 	<%
 		List<ProductDTO> ar = (List<ProductDTO>)request.getAttribute("list");
 		for(ProductDTO productDTO:ar){
 	%>
-		<h3><%= productDTO.getPRODUCTNAME() %></h3>
-		<h3><%= productDTO.getPRODUCTJUMSU() %></h3>
+		<h3><%= productDTO.getProductName() %></h3>
+		<h3><%= productDTO.getProductJumsu()%></h3>
 	<% } %>
 	<hr>
 	<div class="col-6">
@@ -32,8 +32,8 @@
 		<tbody>
 			<c:forEach items="${list}" var="dto"> <!-- dto는 page영역에 담김 -->
 				<tr>
-					<td><a href="./detail?PRODUCTNUM=${dto.PRODUCTNUM}">${pageScope.dto.PRODUCTNAME}</a></td>
-					<td>${dto.PRODUCTJUMSU }</td>
+					<td><a href="./detail?productNum=${dto.productNum}">${pageScope.dto.productName}</a></td>
+					<td>${dto.productJumsu }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

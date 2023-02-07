@@ -50,15 +50,15 @@ public class ProductController {
 	
 	@RequestMapping(value="productAdd",method = RequestMethod.GET)
 	public void productAdd() {
-		//메서드 이름과 주소값의 이름이 같으면 return 값이 없어도 찾을수 있음
-	}
+		//void를 사용하면 메서드 이름과 주소값의 이름이 같으면 return 값이 없어도 찾을수 있음
+	} // list로 돌아감.(jsp)
 	
 	@RequestMapping(value="productAdd",method = RequestMethod.POST)
 	public String productAdd(ProductDTO productDTO) throws Exception {
-		int result = productService.setAddProduct(productDTO, null);
+		int result = productService.setProductAdd(productDTO, null);
 		System.out.println(result==1);
 		return "redirect:./list";
-	}
+	}//DBㅔ insert
 	
 	
 	@RequestMapping(value="update")

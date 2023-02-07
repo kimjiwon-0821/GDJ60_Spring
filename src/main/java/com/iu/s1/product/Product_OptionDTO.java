@@ -1,41 +1,40 @@
 package com.iu.s1.product;
 
 public class Product_OptionDTO {
-	private Long OPTIONNUM;
-	private Long PRODUCTNUM;
-	private String OPTIONNAME;
-	private Long OPTIONPRICE;
-	private Long JEGO;
-	public Long getOPTIONNUM() {
-		return OPTIONNUM;
+	private Long optionNum;
+	private Long productNum;
+	private String optionName;
+	private Long optionPrice;
+	private Long optionStock;
+	public Long getOptionNum() {
+		return optionNum;
 	}
-	public void setOPTIONNUM(Long oPTIONNUM) {
-		OPTIONNUM = oPTIONNUM;
+	public void setOptionNum(Long optionNum) {
+		this.optionNum = optionNum;
 	}
-	public Long getPRODUCTNUM() {
-		return PRODUCTNUM;
+	public Long getProductNum() {
+		return productNum;
 	}
-	public void setPRODUCTNUM(Long pRODUCTNUM) {
-		PRODUCTNUM = pRODUCTNUM;
+	public void setProductNum(Long productNum) {
+		this.productNum = productNum;
 	}
-	public String getOPTIONNAME() {
-		return OPTIONNAME;
+	public String getOptionName() {
+		return optionName;
 	}
-	public void setOPTIONNAME(String oPTIONNAME) {
-		OPTIONNAME = oPTIONNAME;
+	public void setOptionName(String optionName) {
+		this.optionName = optionName;
 	}
-	public Long getOPTIONPRICE() {
-		return OPTIONPRICE;
+	public Long getOptionPrice() {
+		return optionPrice;
 	}
-	public void setOPTIONPRICE(Long oPTIONPRICE) {
-		OPTIONPRICE = oPTIONPRICE;
+	public void setOptionPrice(Long optionPrice) {
+		this.optionPrice = optionPrice;
 	}
-	public Long getJEGO() {
-		return JEGO;
+	public Long getOptionStock() {
+		return optionStock;
 	}
-	public void setJEGO(Long jEGO) {
-		JEGO = jEGO;
+	public void setOptionStock(Long optionStock) {
+		this.optionStock = optionStock;
 	}
 	
-
 }

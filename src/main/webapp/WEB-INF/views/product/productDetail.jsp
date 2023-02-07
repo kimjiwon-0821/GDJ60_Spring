@@ -10,12 +10,12 @@
 <body>
 	<h1>product Detail</h1>
 	<% ProductDTO productDTO=(ProductDTO) request.getAttribute("dto"); %>
-	<h3><%=productDTO.getPRODUCTNAME() %></h3>
-	<h3><%= productDTO.getPRODUCTDETAIL() %></h3>
+	<h3><%=productDTO.getProductName() %></h3>
+	<h3><%= productDTO.getProductDetail() %></h3>
 	
 	<hr>
-	<h3>${requestScope.dto.PRODUCTNAME}</h3>
-	<h3>${requestScope.dto.PRODUCTDETAIL}</h3>
-	<h3>${dto.PRODUCTJUMSU*dto.PRODUCTJUMSU}</h3>
+	<h3>${requestScope.dto.productName}</h3>
+	<h3>${requestScope.dto.productDetail}</h3>
+	<h3>${dto.productJumsu*dto.productJumsu}</h3>
 </body>
 </html>

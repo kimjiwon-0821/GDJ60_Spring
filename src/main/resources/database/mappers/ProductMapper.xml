@@ -11,15 +11,18 @@
   	</select>
   	
   	<select id="getProductDetail" parameterType="ProductDTO" resultType="ProductDTO">
-  		SELECT*FROM PRODUCT WHERE PRODUCTNUM=#{PRODUCTNUM}
+  		SELECT*FROM PRODUCT WHERE PRODUCTNUM=#{productNum}
   	</select>
   	
-  	<insert id="setAddProduct" parameterType="ProductDTO" >
-  		INSERT INTO PRODUCT VALUES(#{PRODUCTNUM},#{PRODUCTNAME},#{PRODUCTDETAIL},0.0)	
+  	<insert id="setProductAdd" parameterType="ProductDTO" >
+  		INSERT INTO PRODUCT VALUES(#{productNum},#{productName},#{productDetail},0.0)	
   	</insert>
   	
   	<delete id="setProductDelete" parameterType="Long">
-  		DELETE PRODUCT WHERE PRODUCTNUM=#{PRODUCTNUM}
+  		DELETE PRODUCT WHERE PRODUCTNUM=#{productNum}
   	</delete>
   	
+  	<select id="getProductNum" resultType="Long">
+  		SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
+  	</select>
   </mapper>
