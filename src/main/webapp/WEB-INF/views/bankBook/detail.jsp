@@ -18,7 +18,9 @@
 	<a href="./delete?bookNum=${dto.bookNum }">상품삭제</a>
 	</c:if>
 	<c:if test="${empty dto}">해당 상품이 존재하지 않습니다.</c:if>
+	<a href="./update?bookNum=${dto.bookNum }">상품 수정</a>
 	<a href="./list">목록으로</a>
+	
 	
 
 </body>
