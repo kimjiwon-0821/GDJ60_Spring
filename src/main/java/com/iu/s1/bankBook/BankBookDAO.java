@@ -1,50 +1,34 @@
 package com.iu.s1.bankBook;
 
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iu.s1.product.ProductDTO;
+import com.iu.s1.util.DBConnection;
+
 @Repository
 public class BankBookDAO {
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE="com.iu.s1.bankBook.bankBookDAO.";
-	
-	public List<BankBookDTO> getBankBookList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getBankBookList");
-	}
-	
-	public BankBookDTO getBankBookDetail(BankBookDTO bankBookDTO) throws Exception{
+	private final String NAMESPACE="com.iu.s1.bankBook.BankBookDAO.";
+	public List<BankBookDTO> getBankBookList() throws Exception {
+	      return sqlSession.selectList(NAMESPACE+"getBankBookList");
+	   }
+	public BankBookDTO getBankBookDeail(BankBookDTO bankBookDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getBankBookDetail", bankBookDTO);
 	}
-	
-	public void getBankBookAdd () {
-		
-	}
-	public int setBankBookAdd (BankBookDTO bankBookDTO) throws Exception{
-		return sqlSession.insert(NAMESPACE+"setBankBookAdd",bankBookDTO);
-	}
-	
-	public int setBankBookUpdate(BankBookDTO bankBookDTO) throws Exception{
-		return sqlSession.update(NAMESPACE+"setBankBookUpdate",bankBookDTO);
-	}
-	
+	public int setBankBookAdd(BankBookDTO bankBookDTO) throws Exception{
+			return sqlSession.insert(NAMESPACE+"setBankBookAdd", bankBookDTO);
+		}
 	public int setBankBookDelete(BankBookDTO bankBookDTO) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setBankBookDelete",bankBookDTO);
 	}
 	
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
-//	}
-//
-//	/**
-//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-//	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
-//	}
-
 }

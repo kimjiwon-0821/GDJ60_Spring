@@ -32,9 +32,9 @@ public class ProductDAOTest extends MyTestCase{
 	@Test
 	public void getProductAddTest() throws Exception{
 		ProductDTO productDTO = new ProductDTO();
-		productDTO.setProductNum(7L);
-		productDTO.setProductName("kinn");
-		productDTO.setProductDetail("kim");
+		productDTO.setProductNum(500L);
+		productDTO.setProductName("s");
+		productDTO.setProductDetail("s");
 		int result = productDAO.setProductAdd(productDTO);
 		assertEquals(1, result);
 	}

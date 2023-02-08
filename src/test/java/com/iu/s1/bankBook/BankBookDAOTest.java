@@ -7,20 +7,22 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.iu.s1.bankBook.BankBookDAO;
-import com.iu.s1.bankBook.BankBookDTO;
+import com.iu.s1.MyTestCase;
 
-public class BankBookDAOTest {
-	@Autowired
+public class BankBookDAOTest extends MyTestCase{
+	
+	@Autowired //주입
 	private BankBookDAO bankBookDAO;
 
 	@Test
-	public void getBankBookList() throws Exception {
-		List<BankBookDTO> ar = bankBookDAO.getBankBookList();
-		assertNotEquals(0, ar.size());
-	}
-	@Test
-	public void getBankBookDetail() throws Exception {
-		
+	public void setBankBookAddTest() throws Exception{
+		BankBookDTO bankBookDTO = new BankBookDTO();
+		bankBookDTO.setBookNum(200L);
+		bankBookDTO.setBookName("pwtest");
+		bankBookDTO.setBookDetail("nametest");
+		bankBookDTO.setBookRate(2.0);
+		bankBookDTO.setBookSale(1);
+		int result = bankBookDAO.setBankBookAdd(bankBookDTO);
+		assertEquals(1, result);
 	}
 }

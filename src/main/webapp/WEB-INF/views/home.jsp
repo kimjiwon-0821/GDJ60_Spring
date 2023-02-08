@@ -1,5 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>Home</title>
@@ -9,7 +10,9 @@
 	Hello world!  
 </h1>
 <a href="./product/list?num=1&num=2&num=3"> productList</a>
-<a href="/product/list"> productList</a>
+<a href="/product/list"> productList</a><br>
+<a href="/bankBook/list">bankBookList</a>
+<a href="./bankBook/list">BankBookList</a>
 
 
 <P>  The time on the server is ${serverTime}. </P>
