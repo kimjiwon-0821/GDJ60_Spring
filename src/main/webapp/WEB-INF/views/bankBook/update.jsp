@@ -10,14 +10,25 @@
 	<h1>BankBook Update Page</h1>
 	<form action="./update" method="post">
 		<input type="hidden" name="bookNum" value="${dto.bookNum }">
-		이름
+	<fieldset>
+		<legend>이름</legend>
 		<input type="text" name = "bookName" value="${dto.bookName}" ><br>
-		상세정보
+	</fieldset>
+	<fieldset>
+		<legend>상세정보</legend>
 		<textarea name="bookDetail" rows="" cols="">${dto.bookDetail}</textarea><br>
-		이자율
+	</fieldset>
+	<fieldset>
+		<legend>이자율</legend>
 		<input type="text" name="bookRate" value="${dto.bookRate}"><br>
-		판매여부
-		<input type="number" name = "bookSale" value="${dto.bookSale}"><br>
+	</fieldset>
+	<fieldset>
+		<legend>판매여부</legend>
+		<label for="bs1">판매</label>
+		<input id = "bs1" type="radio" ${dto.bookSale eq '1'? 'checked':''} name="bookSale" value="1">
+		<label for="bs2">판매중단</label>
+		<input id="bs2" type="radio" ${dto.bookSale eq '0'? 'checked':''} name="bookSale" value="0">
+	</fieldset>
 		<button type="submit">수정</button>
 	</form>
 
