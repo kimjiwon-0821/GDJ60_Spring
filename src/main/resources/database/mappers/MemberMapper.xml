@@ -6,4 +6,7 @@
   	<insert id="setMemberAdd" parameterType="MemberDTO">
   		INSERT INTO BANKMEMBERS VALUES(#{id},#{pw},#{name},#{phone},#{email})
   	</insert>
+  	<select id="getMemberList" resultType="MemberDTO" statementType="PREPARED">
+  		SELECT *FROM BANKMEMBERS
+  	</select>
   </mapper>

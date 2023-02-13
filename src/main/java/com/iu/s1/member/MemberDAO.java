@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iu.s1.bankBook.BankBookDTO;
 import com.iu.s1.product.ProductDTO;
 import com.iu.s1.util.DBConnection;
 
@@ -21,4 +22,7 @@ public class MemberDAO {
 	public int setMemberAdd(MemberDTO memberDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setMemberAdd", memberDTO);
 	}
+	public List<MemberDTO> getMemberList() throws Exception {
+	      return sqlSession.selectList(NAMESPACE+"getMemberList");
+	   }
 }

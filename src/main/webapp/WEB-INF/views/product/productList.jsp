@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../template/common_css"></c:import>
+<c:import url="../template/common_css.jsp"></c:import>
  <link rel="stylesheet" href="/resources/css/table.css">
 </head>
 <body>

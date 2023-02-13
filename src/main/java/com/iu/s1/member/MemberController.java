@@ -8,18 +8,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.s1.bankBook.BankBookDTO;
+import com.iu.s1.product.ProductDTO;
+
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
 	@Autowired
 	private MemeberService memeberService;
-	
-//	@RequestMapping(value="join")
-////	public String getmemberJoin() {
-////		List<MemberDTO> ar;
-////		memeberService.memberJoin(ar);
-////	}
-//	
+	//list
+	@RequestMapping(value="list", method=RequestMethod.GET)
+	public ModelAndView getBankBookList() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<MemberDTO> ar = memeberService.getMemberList();
+		mv.setViewName("member/memberList");
+		mv.addObject("list", ar);
+		return mv;
+	}
 	@RequestMapping(value="memberAdd", method = RequestMethod.GET)
 	public void memberAdd() {
 		//list.jsp로 돌아가는 메서드
