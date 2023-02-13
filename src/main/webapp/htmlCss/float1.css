@@ -1,0 +1,26 @@
+.wrap{
+    width: 525px;
+    height: 100px;
+    border: black 1px solid;
+}
+.c1{
+    width: 100px;
+    height: 100px;
+    /* display: inline-block; */
+}
+.bg1{
+    background-color: tomato;
+    float: left;
+}
+.bg2{
+    background-color: khaki;
+    float: left;
+}
+.bg3{
+    background-color: royalblue;
+    float: right;
+}
+.bg4{
+    background-color: black;
+    clear: both;
+}

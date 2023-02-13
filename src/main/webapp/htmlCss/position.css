@@ -1,0 +1,43 @@
+.c1{
+    width: 100px;
+    height: 100px;
+
+}
+.p1{
+    background-color: tomato;
+    /* 순서대로 위치함 */
+    position: static;
+}
+.p2{
+    background-color: royalblue;
+    /* 전체화면의 절대위치 */
+    position: absolute;
+    top: 50px;
+    left: 200px;
+}
+.p3{
+    background-color: khaki;
+    /* 현재 보이는 화면의 절대위치 */
+    position: fixed;
+    top: 200px;
+    left: 100px;
+    z-index: 999;
+}
+.p4{
+    background-color: olivedrab;
+    height: 200px;
+    width: 300px;
+    position: relative;
+    top: 200px;
+    left: 50px;
+}
+.p5{
+    background-color: rosybrown;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.p6{
+    background-color: sandybrown;
+
+}

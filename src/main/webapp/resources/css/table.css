@@ -1,0 +1,55 @@
+.tbl{
+    width: 70%;
+    margin: 0 auto;
+    border: 1px solid black;
+    /* border와 margine 사이의 공간 */
+    border-spacing: 0px; 
+    /* 합쳤을때 선 1개collapse? 둘다? 선택 separate*/
+    border-collapse: collapse;
+}
+.title{
+    width: 30%;
+    margin: 0 auto;
+}
+.tbl th, .tbl td{
+    border: 1px solid black;
+    height: 30px;
+}
+.tbl th{
+    color: white;
+    background-color: black;
+}
+.tbl td >a{
+    color: black;
+    text-decoration: none;
+}
+.kong{
+    width: 70%;
+    margin: auto;
+}
+.tbl_td{
+    /* 가운데 정렬 */
+    text-align:center ;
+}
+
+.tbl2{
+    width: 70%;
+    margin: auto;
+    border-spacing:0px ;
+    border-collapse: collapse;
+}
+
+.tbl2 th{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    
+    
+}
+.tbl2 > tbody> tr> td{
+    border-bottom: 1px solid black;
+
+}
+.tbl2 th, .tbl2 td{
+    border-right:3px solid white ;
+}
