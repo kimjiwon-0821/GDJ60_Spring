@@ -9,4 +9,7 @@
   	<select id="getMemberList" resultType="MemberDTO" statementType="PREPARED">
   		SELECT *FROM BANKMEMBERS
   	</select>
+  	<insert id="" parameterType="">
+  		INSERT INTO MEMBER_ROLE(ID,ROLENUM) VALUES
+  	</insert>
   </mapper>
