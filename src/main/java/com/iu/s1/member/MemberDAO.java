@@ -25,4 +25,14 @@ public class MemberDAO {
 	public List<MemberDTO> getMemberList() throws Exception {
 	      return sqlSession.selectList(NAMESPACE+"getMemberList");
 	   }
+	public int setMemberRoleAdd(MemberDTO memberDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setMemberRoleAdd", memberDTO);
+	}
+	public MemberDTO getMemberLogin(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getMemberLogin", memberDTO);
+	}
+	public int  setMemberUpdate(MemberDTO memberDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setMemberUpdate",memberDTO );
+		
+	}
 }

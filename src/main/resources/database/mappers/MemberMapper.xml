@@ -9,7 +9,17 @@
   	<select id="getMemberList" resultType="MemberDTO" statementType="PREPARED">
   		SELECT *FROM BANKMEMBERS
   	</select>
-  	<insert id="" parameterType="">
-  		INSERT INTO MEMBER_ROLE(ID,ROLENUM) VALUES
-  	</insert>
+  	<insert id="setMemberRoleAdd" parameterType="MemberDTO">
+  		INSERT INTO MEMBER_ROLE(ID,ROLENUM) VALUES(#{id},(SELECT ROLENUM FROM ROLE WHERE ROLENAME='MEMBER'))
+  	</insert>  
+  	<select id="getMemberLogin" resultType="MemberDTO" parameterType="MemberDTO">
+  		SELECT * FROM BANKMEMBERS WHERE ID=#{id}
+  	</select>
+  	<select id="getMemberPage" resultType="MemberDTO" parameterType="MemberDTO">
+  		SELECT * FROM BANKMEMBERS WHERE ID=#{id}
+  	</select>
+  	<update id="setMemberUpdate" parameterType="MemberDTO">
+  		UPDATE BANKMEMBERS SET NAME=#{name}, PHONE=#{phone},EMAIL=#{email} WHERE ID=#{id}
+  	</update>
+  	
   </mapper>
