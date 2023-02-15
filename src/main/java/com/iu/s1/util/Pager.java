@@ -20,9 +20,9 @@ public class Pager {
 	private boolean before;
 	private boolean after;
 	
-	public Pager() {
-		this.perPage=10L;
-	}
+//	public Pager() {
+//		this.perPage=10L;
+//	}
 	
 	//startRow, lastRow 계산하는 메서드
 	public void makeRow() {
