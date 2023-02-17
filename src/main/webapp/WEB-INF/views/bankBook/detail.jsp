@@ -15,6 +15,12 @@
 	<h3>Detail : ${requestScope.dto.bookDetail}</h3>
 	<h3>Rate : ${requestScope.dto.bookRate}</h3>
 	<h3>Sale : ${requestScope.dto.bookSale}</h3>
+	<div>
+		<c:if test="${not empty dto.bankBookImgDTO}">
+		<img src="../resources/upload/bankBook/${dto.bankBookImgDTO.fileName}">
+		</c:if>
+	</div>
+	
 	<a href="./delete?bookNum=${dto.bookNum }">상품삭제</a>
 	</c:if>
 	<c:if test="${empty dto}">해당 상품이 존재하지 않습니다.</c:if>

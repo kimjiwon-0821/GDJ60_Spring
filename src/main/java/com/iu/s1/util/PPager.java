@@ -1,14 +1,20 @@
 package com.iu.s1.util;
 
 public class PPager {
+	//페이지번호
 	private Long page;
+	//한페이지에 출력되는 row
 	private Long perPage;
 	private Long startRow;
 	private Long lastRow;
 	private Long startNum;
 	private Long lastNum;
 	
-	
+	//table에서 조회할 숫자의 범위
+	public void makeRow() {
+		this.startRow= 3L;
+		this.lastRow= 3L;
+	}
 	
 	public Long getPage() {
 		return page;

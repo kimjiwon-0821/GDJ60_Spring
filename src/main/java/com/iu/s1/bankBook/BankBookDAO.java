@@ -19,8 +19,8 @@ public class BankBookDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.s1.bankBook.BankBookDAO.";
-	public Long getBankBookCount() throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getBankBookCount");
+	public Long getBankBookCount(Pager pager) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getBankBookCount",pager);
 	}
 	public List<BankBookDTO> getBankBookList(Pager pager) throws Exception {
 	      return sqlSession.selectList(NAMESPACE+"getBankBookList", pager);
@@ -37,5 +37,8 @@ public class BankBookDAO {
 	public int setBankBookUpdate(BankBookDTO bankBookDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"setBankBookUpdate", bankBookDTO);
 	}
+	   public int setBankBookImgAdd(BankBookImgDTO bankBookImgDTO) throws Exception {
+		      return sqlSession.insert(NAMESPACE+"setBankBookImgAdd", bankBookImgDTO);
+		   }
 	
 }

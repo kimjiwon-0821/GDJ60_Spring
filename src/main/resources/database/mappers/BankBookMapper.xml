@@ -3,21 +3,84 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.iu.s1.bankBook.BankBookDAO">
-  	<select id="getBankBookCount" resultType="Long">
+	  <sql id="searchCondition">
+	 		 <if test="kind == 'contents'">
+	 			WHERE BOOKDETAIL LIKE  '%' || #{search} || '%'
+	 		</if>
+	 		
+	 		<if test="kind == 'title'">
+	 			WHERE BOOKNAME LIKE  '%' || #{search} || '%'
+	 		</if>
+	 	
+	 	</sql>
+ 	
+ 	<sql id="searchCondition2">
+ 		WHERE
+						
+			<choose>
+				<when test="kind == 'contents'">
+					BOOKDETAIL  
+				</when>
+				<otherwise>
+					BOOKNAME
+				</otherwise>
+			</choose>
+		 LIKE  '%' || #{search} || '%'
+ 	
+ 	</sql>
+  	<select id="getBankBookCount" parameterType="Pager" resultType="Long">
   		SELECT COUNT(BOOKNUM) FROM BANKBOOK
+  		
+  		<include refid="searchCondition"></include>
+  		
   	</select>
 	<select id="getBankBookList" parameterType="Pager" resultType="BankBookDTO">
-  		SELECT * FROM
-			(SELECT ROWNUM R , B.* FROM 
-				(SELECT * FROM BANKBOOK ORDER BY BOOKNUM DESC) B)
-			WHERE R BETWEEN #{startRow} AND #{lastRow}
+  		SELECT * FROM(
+  			SELECT ROWNUM R , B.* FROM(
+  				SELECT * FROM BANKBOOK
+  					WHERE 
+  						<choose>
+  							<when test="kind=='contents'">
+  								BOOKDETAIL
+  							</when>
+  							<otherwise>
+  								BOOKNAME
+  							</otherwise>
+  						</choose>
+  					LIKE '%'||#{search}||'%'
+  					ORDER BY BOOKNUM DESC
+  			)B
+  		)WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
-  	<select id="getBankBookDetail" parameterType="BankBookDTO" resultType="BankBookDTO">
-  		SELECT*FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
+  	<select id="getBankBookDetail" parameterType="BankBookDTO" resultMap="bankBookDetailResult">
+  		SELECT B.*, BI.* FROM BANKBOOK B LEFT OUTER JOIN BANKBOOKIMG BI ON (B.BOOKNUM = BI.BOOKNUM) 
+  		WHERE B.BOOKNUM=#{bookNum}
   	</select>
-  	<insert id="setBankBookAdd" parameterType="BankBookDTO" >
-  		INSERT INTO BANKBOOK VALUES(BKBOOK_SEQ.NEXTVAL,#{bookName},#{bookDetail},#{bookRate},#{bookSale})	
-  	</insert>
+  	<resultMap type="BankBookDTO" id="bankBookDetailResult">
+  		<!-- Primary Key -->
+  		<id column="BOOKNUM" property="bookNum"/>
+  		<!-- 그외 나머지 -->
+  		<result column="BOOKNAME" property="bookName"/>
+  		<result column="BOOKDETAIL" property="bookDetail"/>
+  		<result column="BOOKRATE" property="bookRate"/>
+  		<result column="BOOKSALE" property="bookSale"/>
+  		<!-- 1:1 -->
+  		<association property="bankBookImgDTO" javaType="BankBookImgDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORINAME" property="oriName"/>
+  		</association>
+  		<!-- 1:N -->
+  		<!-- <collection property=""></collection> -->
+  	</resultMap>
+  	
+  	<insert id="setBankBookAdd" parameterType="BankBookDTO">
+ 		<selectKey keyProperty="bookNum" resultType="Long" order="BEFORE">
+ 			SELECT BKBOOK_SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		INSERT INTO BANKBOOK 
+ 		VALUES (#{bookNum} ,#{bookName},#{bookDetail},#{bookRate},#{bookSale})
+ 	</insert>
   	<delete id="setBankBookDelete" parameterType="BankBookDTO">
   		DELETE BANKBOOK WHERE BOOKNUM=#{bookNum}
   	</delete>
@@ -25,4 +88,9 @@
   		UPDATE BANKBOOK SET BOOKNAME=#{bookName},BOOKDETAIL=#{bookDetail},
   		BOOKRATE=#{bookRate},BOOKSALE=#{bookSale} WHERE BOOKNUM=#{bookNum}
   	</update>
+  	<insert id="setBankBookImgAdd" parameterType="BankBookImgDTO">
+ 		INSERT INTO BANKBOOKIMG
+ 		VALUES (BKBOOK_SEQ.NEXTVAL, #{bookNum}, #{fileName}, #{oriName})
+ 	</insert>
+  	
   </mapper>

@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.iu.s1.MyTestCase;
+import com.iu.s1.util.Pager;
 
 public class ProductDAOTest extends MyTestCase{
 	
@@ -15,8 +16,8 @@ public class ProductDAOTest extends MyTestCase{
 	private ProductDAO productDAO;
 	
 	@Test
-	public void getProductListTest()throws Exception {
-		List<ProductDTO> ar = productDAO.getProductList();
+	public void getProductListTest(Pager pager)throws Exception {
+		List<ProductDTO> ar = productDAO.getProductList(pager);
 		//단정문
 		assertNotEquals(0, ar.size());
 	}

@@ -1,8 +1,20 @@
 package com.iu.s1.util;
 
 public class Pager {
+	//검색 종류(사용할 column)
+	private String kind;
+	//검색어
+	private String search;
+	
 	//한페이지에 출력할 row의 갯수
 	private Long perPage;
+	
+	//한블럭당 출력할 번호의 갯수
+	private Long perBlock;
+	
+	//전체 페이지 갯수 --> setter을 만들지 않음으로 밖에서 값을 받지 않음.
+	private Long totalPage;
+	
 	//client가 보고싶은 페이지 번호(parameter)
 	private Long page;
 	
@@ -34,23 +46,23 @@ public class Pager {
 	public void makeNum(Long totalCount) {
 		//1.전체 row 갯수 구하기
 		//2.총 page 갯수 구하기
-		Long totalPage = totalCount/this.getPerPage();
+		this.totalPage = totalCount/this.getPerPage();
 		if(totalCount%this.getPerPage()!=0) {
 			totalPage++;
 		}
-		//3.한블럭에 출력할 번호의 갯수
-		Long perBlock = 5L;
+//		//3.한블럭에 출력할 번호의 갯수
+//		Long perBlock = 5L; ->멤버변수로 변경
 		//4.총 블럭의 수 구하기
-		Long totalBlock = totalPage/perBlock;
-		if(totalPage%perBlock!=0) {
+		Long totalBlock = totalPage/this.getPerBlock();
+		if(totalPage%this.getPerBlock()!=0) {
 			totalBlock++;
 		}
 		//5.page 번호로 현재 블럭 번호 구하기
 		//page 1-5 curBlock 1
 		//page 6-10 curBlock 2
 		//page 11-15 curBlock 3
-		Long curBlock = this.getPage()/perBlock;
-		if(this.getPage()%perBlock !=0) {
+		Long curBlock = this.getPage()/this.getPerBlock();
+		if(this.getPage()%this.getPerBlock() !=0) {
 			curBlock++;
 		}
 		//6.curBlock의 시작번호와 끝번호를 계산
@@ -59,8 +71,8 @@ public class Pager {
 		 *		2			6			10
 		 *		3			11			15
 		 */
-		this.startNum=(curBlock-1)*perBlock+1;
-		this.lastNum=curBlock*perBlock;
+		this.startNum=(curBlock-1)*this.getPerBlock()+1;
+		this.lastNum=curBlock*this.getPerBlock();
 		
 		this.after=true;
 		if(curBlock==totalBlock) {
@@ -140,6 +152,41 @@ public class Pager {
 	public void setBefore(boolean before) {
 		this.before = before;
 	}
+
+	public Long getPerBlock() {
+		if(this.perBlock==null || this.perBlock<1) {
+			this.perBlock=5L;
+		}
+		return perBlock;
+	}
+
+	public void setPerBlock(Long perBlock) {
+		this.perBlock = perBlock;
+	}
+
+	public Long getTotalPage() { //밖에서 값을 받을 필요가 없기 때문에 getter만 만듬.
+		return totalPage;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		if(search==null) {
+			search="";
+		}
+		return search;//"%"+search+"%";
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 	
 	
 	

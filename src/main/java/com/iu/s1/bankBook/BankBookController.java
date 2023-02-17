@@ -2,10 +2,13 @@ package com.iu.s1.bankBook;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s1.util.Pager;
@@ -48,13 +51,17 @@ public class BankBookController {
 	}
 	
 	//add DB insert
-	@RequestMapping(value="add", method = RequestMethod.POST)
-	public ModelAndView setBankBookAdd(BankBookDTO bankBookDTO)throws Exception {
-		ModelAndView mv = new ModelAndView();
-		int result = bankBookService.setBankBookAdd(bankBookDTO);
-		mv.setViewName("redirect:./list"); //경로를 넣어주는 것.
-		return mv;
-	}
+	   @RequestMapping(value = "add", method = RequestMethod.POST)
+	   public ModelAndView setBankBookAdd(BankBookDTO bankBookDTO, MultipartFile pic, HttpSession Session) throws Exception {
+	      ModelAndView modelAndView = new ModelAndView();
+	      System.out.println("Name : " + pic.getName());
+	      System.out.println("Original File Name : " + pic.getOriginalFilename());
+	      System.out.println("Size : " + pic.getSize());
+	      System.out.println(Session.getServletContext());
+	      int result = bankBookService.setBankBookAdd(bankBookDTO, pic);
+	      modelAndView.setViewName("redirect:./list");
+	      return modelAndView;
+	   }
 	
 	//delete
 	@RequestMapping(value="delete", method = RequestMethod.GET)
@@ -82,5 +89,6 @@ public class BankBookController {
 		mv.setViewName("redirect:./list");
 		return mv;
 	}
+	 
 
 }

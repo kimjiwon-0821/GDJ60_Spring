@@ -9,7 +9,7 @@
 <body>
 	<h1> product add</h1>
 	<div class ="col-6">
-		<form action="./productAdd" method="post">
+		<form action="./productAdd" method="post" enctype="multipart/form-data">
 			상품명
 			<input type="text" name="productName" value="test"> <br>
 			상품정보

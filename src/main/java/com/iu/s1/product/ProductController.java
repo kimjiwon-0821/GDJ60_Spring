@@ -13,35 +13,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.s1.util.Pager;
+
 @Controller
 @RequestMapping("/product/*")
 public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping(value="list")
-	public ModelAndView getProductList() throws Exception {
+	@RequestMapping(value="list", method = 	RequestMethod.GET)
+	public ModelAndView getProductList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<ProductDTO> ar = productService.getProductList();
-		System.out.println(ar.size()>0);
+		List<ProductDTO> ar = productService.getProductList(pager);
 		mv.setViewName("product/productList");
 		mv.addObject("list",ar);
+		mv.addObject(pager);
 		return mv;
 		}
-//		
-//		List<ProductDTO> ar = productService.getProductList();
-//		System.out.println(ar.size()>0);
-//		return "product/productList";
-//	}
 	
 	@RequestMapping(value="detail")
 	public String getProductDetail(ProductDTO productDTO,Model model) throws Exception {
 		//parameter의 이름은 setter의 이름과 같아야함
 		System.out.println("Product Detail");
-		//String num = request.getParameter("num");
-//		ProductDTO productDTO = new ProductDTO();
-//		productDTO.setPRODUCTNUM(num);
-//		productDTO.setPRODUCTNAME(name);
 		productDTO=productService.getProductDetail(productDTO);
 		System.out.println(productDTO!=null);
 		model.addAttribute("dto", productDTO);
