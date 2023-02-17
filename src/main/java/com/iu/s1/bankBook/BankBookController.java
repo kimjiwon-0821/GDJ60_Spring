@@ -52,13 +52,13 @@ public class BankBookController {
 	
 	//add DB insert
 	   @RequestMapping(value = "add", method = RequestMethod.POST)
-	   public ModelAndView setBankBookAdd(BankBookDTO bankBookDTO, MultipartFile pic, HttpSession Session) throws Exception {
+	   public ModelAndView setBankBookAdd(BankBookDTO bankBookDTO, MultipartFile multipartFile, HttpSession Session) throws Exception {
 	      ModelAndView modelAndView = new ModelAndView();
-	      System.out.println("Name : " + pic.getName());
-	      System.out.println("Original File Name : " + pic.getOriginalFilename());
-	      System.out.println("Size : " + pic.getSize());
+	      System.out.println("Name : " + multipartFile.getName());
+	      System.out.println("Original File Name : " + multipartFile.getOriginalFilename());
+	      System.out.println("Size : " + multipartFile.getSize());
 	      System.out.println(Session.getServletContext());
-	      int result = bankBookService.setBankBookAdd(bankBookDTO, pic);
+	      int result = bankBookService.setBankBookAdd(bankBookDTO, multipartFile);
 	      modelAndView.setViewName("redirect:./list");
 	      return modelAndView;
 	   }

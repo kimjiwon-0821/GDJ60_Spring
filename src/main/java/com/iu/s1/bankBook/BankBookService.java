@@ -33,7 +33,7 @@ public class BankBookService {
 	 public int setBankBookAdd(BankBookDTO bankBookDTO, MultipartFile multipartFile) throws Exception {
 	      int result = bankBookDAO.setBankBookAdd(bankBookDTO);
 	      
-	      if(multipartFile.isEmpty()) {//multipartFile.getSize()!=0
+	      if(!multipartFile.isEmpty()) {//multipartFile.getSize()!=0
 	      //1. File을 HDD에 저장
 	      //   Project 경로가 아닌 OS가 이용하는 경로
 	      String path = servletContext.getRealPath("resources/upload/bankBook");
