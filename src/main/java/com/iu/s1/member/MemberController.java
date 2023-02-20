@@ -16,6 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberController {
 	@Autowired
 	private MemeberService memeberService;
+	
+	@RequestMapping(value="memberAgree")
+	public ModelAndView setMemberAgree() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
 	//list
 	@RequestMapping(value="memberlist", method=RequestMethod.GET)
 	public ModelAndView getMemeberList() throws Exception{
