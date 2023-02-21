@@ -24,12 +24,16 @@ let emailCheck=false;
 //ID 검증
 id.addEventListener("blur",function(){
     if(id.value.length!=0){
-        idResult.innerHTML='';
+        idResult.innerHTML='정상적인 ID';
         idCheck=true;
+        idResult.classList.add("blueResult")
+        idResult.classList.remove("redResult")
         //checks[0]=true;
     }else{
         idResult.innerHTML='ID는 필수입니다.';
         idCheck=false;
+        idResult.classList.add("redResult")
+        idResult.classList.remove("blueResult")
     }
 });
 
@@ -38,10 +42,15 @@ pw.addEventListener("keyup",function(){
     if(pw.value.length>5 && pw.value.length<13){
         pwResult.innerHTML='정상비번'
         pwLengthCheck=true;
+        pwResult.classList.add("blueResult")
+        pwResult.classList.remove("redResult")
         //checks[1]=true;
     }else{
         pwResult.innerHTML='비번은 6자 이상 12자 이하여야 합니다'
         pwLengthCheck=false;
+        pwResult.classList.add("redResult")
+        pwResult.classList.remove("blueResult")
+
     }
 })
 
@@ -50,8 +59,10 @@ pw.addEventListener("blur",function(){
         pwNullCheck=true;
         //chescks[2]=true;
     }else{
-        idResult.innerHTML='PW는 필수입니다.'
+        pwResult.innerHTML='PW는 필수입니다.'
         pwNullCheck=false;
+        pwResult.classList.add("redResult")
+        pwResult.classList.remove("blueResult")
     }
 });
 
@@ -59,6 +70,8 @@ pw.addEventListener("change",function(){
     pwEqualCheck=false;
     pwcheck.value='';
     pwCheckResult.innerHTML='pw가 틀립니다.'
+    pwCheckResult.classList.add("redResult")
+    pwCheckResult.classList.remove("blueResult")
 })
 
 //pw Equal 검증
@@ -66,9 +79,13 @@ pwcheck.addEventListener("blur",function(){
     if(pwcheck.value==pw.value){
         pwCheckResult.innerHTML="동일한 pw"
         pwEqualCheck=true;
+        pwCheckResult.classList.add("blueResult")
+        pwCheckResult.classList.remove("redResult")
     }else{
         pwCheckResult.innerHTML='pw가 틀립니다';
         pwEqualCheck=false;
+        pwCheckResult.classList.add("redResult")
+        pwCheckResult.classList.remove("blueResult")
     }
 })
 
