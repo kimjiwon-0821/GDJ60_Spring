@@ -94,9 +94,13 @@ user.addEventListener("blur",function(){
     if(user.value.length!=0){
         nameResult.innerHTML='';
         userCheck=true;
+        userResult.classList.add("blueResult")
+        userResult.classList.remove("redResult")
     }else{
         nameResult.innerHTML='이름은 필수입니다.';
         userCheck=false;
+        userResult.classList.add("redResult")
+        userResult.classList.remove("blueResult")
     }
 });
 
@@ -105,9 +109,13 @@ phone.addEventListener("blur",function(){
     if(phone.value.length!=0){
         phoneResult.innerHTML='';
         phoneCheck=true;
+        phoneResult.classList.add("blueResult")
+        phoneResult.classList.remove("redResult")
     }else{
         phoneResult.innerHTML='전화번호는 필수입니다.';
         phoneCheck=false;
+        phoneResult.classList.add("redResult")
+        phoneResult.classList.remove("blueResult")
     }
 });
 
@@ -116,9 +124,13 @@ email.addEventListener("blur",function(){
     if(email.value.length!=0){
         emailResult.innerHTML='';
         emailCheck=true;
+        emailResult.classList.add("blueResult")
+        emailResult.classList.remove("redResult")
     }else{
         emailResult.innerHTML='이메일은 필수입니다.';
         emailCheck=false;
+        emailResult.classList.add("redResult")
+        emailResult.classList.remove("blueResult")
     }
 });
 
