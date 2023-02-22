@@ -36,19 +36,29 @@
 					<label for="bs2">판매중단</label>
 					<input id="bs2" type="radio" name="bookSale" value = "0">
 				</fieldset>
-			</div>      
+			</div>     
+
 		<!-- 파일추가 -->  
-         <div class="fw-bold fs-5 col-12 mt-3">
+      <div id="filelist">
+         <!-- <div class="fw-bold fs-5 col-12 mt-3">
             <label for="files" class="form-label">Image</label>
             <input type="file" class="form-control" id="files" name="multipartFile">
-         </div>         
-         
+         </div>          -->
+         <button id="fileAdd" type="button">add</button>
+       </div>  
+
+
          <div class="row justify-content-center my-5">
             <button type="submit" class="btn btn-outline-warning col-2">전송</button>
          </div>
       </div>
    </form>
 </div>
+<script src="../resources/js/fileManager.js"></script>
+<script>
+   setMax(3);
+   setParam('f');
+</script>
+<c:import url="../template/common_js.jsp"></c:import>
 </body>
-   <c:import url="../template/common_js.jsp"></c:import>
 </html>

@@ -5,7 +5,7 @@ const pwResult = document.getElementById("pwResult");
 const pwcheck = document.getElementById("pwcheck");
 const pwCheckResult = document.getElementById("pwCheckResult");
 const user = document.getElementById("name");
-const nameResult = document.getElementById("nameResult");
+const userResult = document.getElementById("nameResult");
 const phone = document.getElementById("phone");
 const phoneResult = document.getElementById("phoneResult");
 const email = document.getElementById("email");
@@ -92,12 +92,12 @@ pwcheck.addEventListener("blur",function(){
 //name 검증
 user.addEventListener("blur",function(){
     if(user.value.length!=0){
-        nameResult.innerHTML='';
+        userResult.innerHTML='';
         userCheck=true;
         userResult.classList.add("blueResult")
         userResult.classList.remove("redResult")
     }else{
-        nameResult.innerHTML='이름은 필수입니다.';
+        userResult.innerHTML='이름은 필수입니다.';
         userCheck=false;
         userResult.classList.add("redResult")
         userResult.classList.remove("blueResult")
