@@ -15,7 +15,7 @@ import com.iu.s1.util.Pager;
 public class BankBookService {
 	@Autowired
 	private BankBookDAO bankBookDAO;
-	@Autowired
+//	@Autowired
 	private ServletContext servletContext;
 	@Autowired
 	private FileManager fileManager;
