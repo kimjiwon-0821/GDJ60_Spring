@@ -13,7 +13,7 @@ import com.iu.s1.util.Pager;
 @Service
 public class NoticeService implements BoardService{
 	@Autowired
-	private BbsDAO noticeDAO;
+	private NoticeDAO noticeDAO;
 	
 
 	@Override
@@ -25,8 +25,8 @@ public class NoticeService implements BoardService{
 
 	@Override
 	public int setBoardAdd(BbsDTO bbsDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return noticeDAO.setBoardAdd(bbsDTO);
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class NoticeService implements BoardService{
 	@Override
 	public BoardDTO getBoardDetail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return noticeDAO.getBoardDetail(boardDTO);
 	}
 	
 

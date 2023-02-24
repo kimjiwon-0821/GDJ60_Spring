@@ -13,11 +13,12 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-	<div class="row mb-4">
-		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4""> product List</h1>
+<div class="container-fluid my-5">
+	<div class="row mb-4 ">
+		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Product List Page</h1>
 	</div>
 	
-	<div class="roww col-md-7 mx-auto">
+	<div class="row col-md-7 mx-auto">
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -85,11 +86,12 @@
 			</form>
 		</div>
 	
-	</div>
-	<!-- 상품등록 버튼 -->
-	<div class="row col-md-7 mx-auto">
-		<a href="./productAdd" class= "btn btn=primary col-2">상품등록</a>
-	</div>
+		</div>
+		<!-- 상품등록 버튼 -->
+		<div class="row col-md-7 mx-auto">
+			<a href="./productAdd" class= "btn btn=primary col-2">상품등록</a>
+		</div>
+</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -12,40 +12,34 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container-fluid my-5">
    <div class="row col-md-4 mx-auto text-center border-bottom border-dark pb-2">
-     <p class="fs-2" >BankBook Add Page</p>
+     <p class="fs-2" style="font-family: 'Impact'">${boardName} Reply Page</p>
    </div>
-   <form action="./add" method = "post" enctype="multipart/form-data">
+   <form action="./reply" method = "post" enctype="multipart/form-data">
+   	 <input type="hidden" name="num" value="${boardDTO.num}">
       <div class="row col-md-4 mx-auto my-5">
          <div class="fw-bold fs-5 col-12">
-            <p>이름</p>
-            <input type="text" name="bookName" class="form-control" id="exampleFormControlInput1" placeholder="상품명 입력"><br>
+            <p>작성자</p>
+            <input type="text" name="writer" class="form-control" id="writer" placeholder="이름 입력"><br>
          </div>
          <div class="fw-bold fs-5 col-12">
-            <p>상세 정보</lp>
-            <textarea name="bookDetail" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="상세 정보 입력"></textarea><br>
-         </div>
+            <p>제목</p>
+            <input type="text" name="title" class="form-control" id="title" placeholder="제목 입력"><br>
+         </div>  
          <div class="fw-bold fs-5 col-12">
-            <p>이자율</p>
-            <input type="text" name="bookRate" class="form-control" id="exampleFormControlInput1" placeholder="이자율 입력"><br>
-         </div>         
-         <div class="mb-3">
-				<fieldset>
-					<legend>판매여부</legend>
-					<label for="bs1" >판매</label>
-					<input id="bs1" type="radio" checked name="bookSale" value ="1">
-					<label for="bs2">판매중단</label>
-					<input id="bs2" type="radio" name="bookSale" value = "0">
-				</fieldset>
-			</div>     
+            <p>내용</lp>
+            <textarea name="contents" class="form-control" id="contents" rows="3" placeholder="내용 입력"></textarea><br>
+         </div>
+		</div>       
+              
 
 		<!-- 파일추가 -->  
-      <div id="filelist">
-         <!-- <div class="fw-bold fs-5 col-12 mt-3">
+      <!-- <div id="filelist">
+         <div class="fw-bold fs-5 col-12 mt-3">
             <label for="files" class="form-label">Image</label>
             <input type="file" class="form-control" id="files" name="multipartFile">
-         </div>          -->
+         </div>         
          <button id="fileAdd" type="button">add</button>
-       </div>  
+       </div>  --> 
 
 
          <div class="row justify-content-center my-5">

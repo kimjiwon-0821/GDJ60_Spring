@@ -12,9 +12,14 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<div class="container-fluid">
-	<div class="row">
-		<table class="table table-hover">
+<div class="container-fluid my-5">
+
+	<div class="row mb-4 ">
+		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">${boardName} List Page</h1>
+	</div>
+
+	<div class="row col-md-7 mx-auto">
+		<table  class="table table-hover">
 			<thead>
 				<tr>
 					<th>NUM</th> <th>TITLE</th> <th>WRITER</th> <th>DATE</th> <th>HIT</th>
@@ -24,7 +29,14 @@
 				<c:forEach items="${list}" var="dto">
 					<tr>
 						<td>${dto.num}</td>
-						<td><a href="./detail">${dto.title}</a></td>
+						<td>
+							<c:catch>
+							<!-- Notice에는 depth가 없어서 Exception 발생  -->
+							<!-- Exception 처리 -->
+							<c:forEach begin="1" end="${dto.depth}">[re]</c:forEach>
+							</c:catch>
+							<a href="./detail?num=${dto.num}">${dto.title}</a>
+						</td>
 						<td>${dto.writer}</td>
 						<td>${dto.regDate}</td>
 						<td>${dto.hit}</td>
@@ -86,7 +98,9 @@
 			</form>
 		</div>
 	</div>
-
+	<div class="row col-md-7 mx-auto">
+		<a href="./add" class="btn btn-primary col-2">상품등록</a>
+	</div>
 </div>
 
 <c:import url="../template/common_js.jsp"></c:import>

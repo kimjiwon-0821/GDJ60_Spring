@@ -3,6 +3,7 @@ const filelist = document.getElementById("filelist");
 let count=0;
 let max=1;
 let param="multipartFile";
+let idx = 0;
 
 function setParam(p){
     param=p;
@@ -11,6 +12,9 @@ function setParam(p){
 function setMax(m){
     max=m;
 }
+
+
+
 
 fileAdd.addEventListener("click",function(){
     console.log("fileAdd Click");
@@ -52,11 +56,26 @@ fileAdd.addEventListener("click",function(){
         arrtI.value=param;
         input.setAttributeNode(arrtI);
 
+        let btn = document.createElement("button");
+        let n = document.createTextNode("X");
+        attr = document.createAttribute("type");
+        attr.value="button";
+        btn.setAttributeNode(attr);
+        attr = document.createAttribute("class");
+        attr.value="btn btn-outline-primary";
+        btn.setAttributeNode(attr);
+        attr = document.createAttribute("data-delete-id");
+        attr.value="del"+idx;
+        btn.setAttributeNode(attr);
+        btn.appendChild(n);
+        
         //Element 조립
         label.appendChild(text);
         div.appendChild(label);
         div.appendChild(input);
+        div.appendChild(btn);
         filelist.prepend(div)
         count++;
+        idx++;
     }
 })
