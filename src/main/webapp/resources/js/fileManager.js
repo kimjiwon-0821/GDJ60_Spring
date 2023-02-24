@@ -15,7 +15,6 @@ function setMax(m){
 
 
 
-
 fileAdd.addEventListener("click",function(){
     console.log("fileAdd Click");
     if(count==max){
@@ -31,16 +30,8 @@ fileAdd.addEventListener("click",function(){
         //Attribure 생성
         //div attribute
         let attr = document.createAttribute("class")
-        this.attributes.value='mb-3'
+        this.attributes.value='input-group'
         div.setAttributeNode(attr);
-
-        //label attribute
-        let arrtL = document.createAttribute("for");
-        arrtL.value='files';
-        label.setAttributeNode(arrtL);
-        arrtL=document.createAttribute("calss");
-        arrtL.value='form-label';
-        label.setAttributeNode(arrtL);
 
         //input attribute
         let arrtI =document.createAttribute("type");
@@ -55,6 +46,9 @@ fileAdd.addEventListener("click",function(){
         arrtI=document.createAttribute("name");
         arrtI.value=param;
         input.setAttributeNode(arrtI);
+        arrtI=document.createAttribute("aria-describedby");
+        arrtI.value='inputGroupFile';
+        input.setAttributeNode(arrtI);
 
         let btn = document.createElement("button");
         let n = document.createTextNode("X");
@@ -62,20 +56,24 @@ fileAdd.addEventListener("click",function(){
         attr.value="button";
         btn.setAttributeNode(attr);
         attr = document.createAttribute("class");
-        attr.value="btn btn-outline-primary";
+        attr.value="btn btn-outline-secondary";
         btn.setAttributeNode(attr);
-        attr = document.createAttribute("data-delete-id");
-        attr.value="del"+idx;
+        attr = document.createAttribute("id");
+        attr.value="inputGroupFile";
         btn.setAttributeNode(attr);
         btn.appendChild(n);
         
         //Element 조립
-        label.appendChild(text);
-        div.appendChild(label);
+        // label.appendChild(text);
+        // div.appendChild(label);
         div.appendChild(input);
         div.appendChild(btn);
         filelist.prepend(div)
         count++;
-        idx++;
+        
+        btn.addEventListener("click",function(){
+            div.remove();
+            count--;
+        })
     }
 })

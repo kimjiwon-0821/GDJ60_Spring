@@ -40,10 +40,11 @@
 
 		<!-- 파일추가 -->  
       <div id="filelist">
-         <!-- <div class="fw-bold fs-5 col-12 mt-3">
-            <label for="files" class="form-label">Image</label>
-            <input type="file" class="form-control" id="files" name="multipartFile">
+         <!-- <div class="input-group">
+            <input type="file" class="form-control" id="files" name="multipartFile"aria-describedby="inputGroupFileAddon04">
+             <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
          </div>          -->
+         
          <button id="fileAdd" type="button">add</button>
        </div>  
 

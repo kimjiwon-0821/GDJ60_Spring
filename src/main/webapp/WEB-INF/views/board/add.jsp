@@ -30,9 +30,8 @@
          </div>
 		     
 		<!-- 파일추가 -->  
-	      <div id="filelist" >
+	      <div id="filelist" class="my-5">
 	         <!-- <div class="fw-bold fs-5 col-12 mt-3">
-	            <label for="files" class="form-label">Image</label>
 	            <input type="file" class="form-control" id="files" name="multipartFile">
 	            <button type="button">X</button>
 	         </div> -->         
