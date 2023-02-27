@@ -41,8 +41,8 @@
 		<!-- 파일추가 -->  
       <div id="filelist">
          <!-- <div class="input-group">
-            <input type="file" class="form-control" id="files" name="multipartFile"aria-describedby="inputGroupFileAddon04">
-             <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                  <input type="file" class="form-control" id="files" name="multipartFile"aria-describedby="inputGroupFileAddon04">
+                  <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
          </div>          -->
          
          <button id="fileAdd" type="button">add</button>

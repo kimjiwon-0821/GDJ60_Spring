@@ -30,7 +30,7 @@
          </div>
 		     
 		<!-- 파일추가 -->  
-	      <div id="filelist" class="my-5">
+	      <div id="filelist">
 	         <!-- <div class="fw-bold fs-5 col-12 mt-3">
 	            <input type="file" class="form-control" id="files" name="multipartFile">
 	            <button type="button">X</button>
@@ -39,7 +39,7 @@
 	       </div> 
 	       
          <div class="row justify-content-center my-5">
-            <button type="submit" class="btn btn-primary col-2">전송</button>
+            <button type="submit" class="btn btn-primary col-2">글쓰기</button>
          </div>
       </div>
    </form>

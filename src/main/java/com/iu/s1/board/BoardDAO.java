@@ -1,12 +1,17 @@
 package com.iu.s1.board;
 
+import java.util.List;
+
 public interface BoardDAO extends BbsDAO{
 	//list - 상속
 	
 	//detail
 	public BoardDTO getBoardDetail(BoardDTO boardDTO) throws Exception;
 	
-	//insert - 상속
+	//add - 상속
+	
+	//fileAdd
+	public int setBoardFileAdd(BoardFileDTO boardFileDTO) throws Exception;
 	
 	
 	//update - 상속
@@ -14,5 +19,6 @@ public interface BoardDAO extends BbsDAO{
 	
 	//delete - 상속
 	
-
+	//BoardFileList
+	public List<BoardFileDTO> getBoardFileList(BbsDTO bbsDTO) throws Exception;
 }

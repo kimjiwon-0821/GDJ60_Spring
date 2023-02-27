@@ -22,18 +22,29 @@
 			<h3>${dto.writer}</h3>
 			<h3>${dto.regDate}</h3>
 			<h3>${dto.hit}</h3>
-			<h1>${dto.contents}</h3>
+			<p>${dto.contents}</p>
 			
-		</div>
-		<div class="row">
+			<c:forEach items="${dto.boardFileDTOs}" var="fileDTO">
+				<a href="../resources/upload/${boardName}/${fileDTO.fileName}">${fileDTO.oriName}</a>
+			</c:forEach>
+		
 			<c:if test="${boardName ne 'notice'}">
-				<a href="./reply?num=${dto.num}" class="btn btn-danger">답글</a>
+				<a href="./reply?num=${dto.num}" class="btn btn-info">답글</a>
 			</c:if>
-		</div>
+			
+			<div>
+				<form action="./update" id="frm">
+					<input type="hidden" name="num" value="${dto.num}">
+					<button id="update" type="submit" class="btn btn-primary">UPDATE</button>
+					<button id="delete" type="button" class="btn btn-danger">DELETE</button>
+				</form>
+			</div>
+		</div> 
 	</div>
 </div>
 	
 
 <c:import url="../template/common_js.jsp"></c:import>
+<script type="text/javascript" src="../resources/js/boardForm.js"></script>
 </body>
 </html>

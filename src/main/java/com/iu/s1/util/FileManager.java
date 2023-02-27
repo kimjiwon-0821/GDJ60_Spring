@@ -43,5 +43,11 @@ public class FileManager {
       
       return name;
    }
+   
+   //file을 HDD에서 삭제
+   public boolean fileDelete(String path, String fileName) throws Exception{
+	   File file = new File(path, fileName);
+	   return file.delete();
+   }
 
 }

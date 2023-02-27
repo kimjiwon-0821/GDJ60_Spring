@@ -15,7 +15,7 @@
      	<li class="nav-item"><a class="nav-link active" href="/notice/list">공지사항</a></li>
 		<li class="nav-item"><a class="nav-link active" href="/product/list">제품</a></li>
 		<li class="nav-item"><a class="nav-link active" href="/bankBook/list">저축상품</a></li>
-		<li class="nav-item"><a class="nav-link active" href="/qna/list">기타메뉴</a>QnA</li>
+		<li class="nav-item"><a class="nav-link active" href="/qna/list">QnA</a></li>
 	</ul>
 	<ul class="navbar-nav">
 		<c:if test="${empty member }">

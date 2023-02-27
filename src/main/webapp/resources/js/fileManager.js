@@ -13,6 +13,16 @@ function setMax(m){
     max=m;
 }
 
+filelist.addEventListener("click",function(e){
+    if(e.target.classList.contains('dels')){
+        e.target.parentNode.remove();
+        // let id = e.target.getAttribute('data-dels-id');
+        // document.getElementById(id).remove();
+        count--;
+    }
+
+});
+
 
 
 fileAdd.addEventListener("click",function(){
@@ -23,14 +33,18 @@ fileAdd.addEventListener("click",function(){
     }else{
         //Element, Text 생성
         let div=document.createElement("div"); //부모div
-        let label = document.createElement("label");
         let input = document.createElement("input");
-        let text = document.createTextNode("이미지");
+        let btn = document.createElement("button");
+        let n = document.createTextNode("X");
 
         //Attribure 생성
         //div attribute
         let attr = document.createAttribute("class")
-        this.attributes.value='input-group'
+        attr.value='input-group mb-3'
+        div.setAttributeNode(attr);
+
+        attr = document.createAttribute("id");
+        attr.value = 'f'+idx;
         div.setAttributeNode(attr);
 
         //input attribute
@@ -46,34 +60,30 @@ fileAdd.addEventListener("click",function(){
         arrtI=document.createAttribute("name");
         arrtI.value=param;
         input.setAttributeNode(arrtI);
-        arrtI=document.createAttribute("aria-describedby");
-        arrtI.value='inputGroupFile';
-        input.setAttributeNode(arrtI);
 
-        let btn = document.createElement("button");
-        let n = document.createTextNode("X");
+        //btn attribute
         attr = document.createAttribute("type");
         attr.value="button";
         btn.setAttributeNode(attr);
         attr = document.createAttribute("class");
-        attr.value="btn btn-outline-secondary";
-        btn.setAttributeNode(attr);
-        attr = document.createAttribute("id");
-        attr.value="inputGroupFile";
+        attr.value="btn btn-outline-primary dels";
         btn.setAttributeNode(attr);
         btn.appendChild(n);
+
+        attr = document.createAttribute('data-dels-id');
+        attr.value = 'f'+idx;
+        btn.setAttributeNode(attr);
         
         //Element 조립
-        // label.appendChild(text);
-        // div.appendChild(label);
         div.appendChild(input);
         div.appendChild(btn);
         filelist.prepend(div)
         count++;
+        idx++;
         
-        btn.addEventListener("click",function(){
-            div.remove();
-            count--;
-        })
+        // btn.addEventListener("click",function(){
+        //     div.remove();
+        //     count--;
+        // })
     }
 })
