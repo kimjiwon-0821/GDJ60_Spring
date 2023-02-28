@@ -12,9 +12,26 @@
   	<insert id="setMemberRoleAdd" parameterType="MemberDTO">
   		INSERT INTO MEMBER_ROLE(ID,ROLENUM) VALUES(#{id},(SELECT ROLENUM FROM ROLE WHERE ROLENAME='MEMBER'))
   	</insert>  
-  	<select id="getMemberLogin" resultType="MemberDTO" parameterType="MemberDTO">
-  		SELECT * FROM BANKMEMBERS WHERE ID=#{id}
+  	
+  	<select id="getMemberLogin" resultMap="getMemberLoginResult" parameterType="MemberDTO">
+  		SELECT M.*,R.* FROM BANKMEMBERS M 
+		INNER JOIN MEMBER_ROLE MR ON (M.ID=MR.ID) 
+		INNER JOIN ROLE R ON(MR.ROLENUM=R.ROLENUM) 
+		WHERE M.ID=#{id}
   	</select>
+  	
+  	<resultMap type="MemberDTO" id="getMemberLoginResult">
+  		<id column="ID" property="id"/>
+  		<result column="PW" property="pw"/>
+  		<result column="NAME" property="name"/>
+  		<result column="EMAIL" property="email"/>
+  		<result column="PHONE" property="phone"/>
+  		<association property="roleDTO" javaType="RoleDTO">
+  			<id column="ROLENUM" property="roleNum"/>
+  			<result column="ROLENAME" property="roleName"/>
+  		</association>
+  	</resultMap>
+  	
   	<select id="getMemberPage" resultType="MemberDTO" parameterType="MemberDTO">
   		SELECT * FROM BANKMEMBERS WHERE ID=#{id}
   	</select>

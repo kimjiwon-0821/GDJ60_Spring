@@ -17,7 +17,7 @@
   
   	<!-- TotalCount -->
   	<select id="getTotalCount" resultType="Long" parameterType="Pager">
-  		SELECT COUNT(NUM)  FROM BANKBOOKCOMMENT 
+  		SELECT COUNT(NUM) FROM BANKBOOKCOMMENT 
   		<include refid="commentCondition"></include>
   	</select>
   	

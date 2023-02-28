@@ -98,9 +98,20 @@
 			</form>
 		</div>
 	</div>
-	<div class="row col-md-7 mx-auto">
-		<a href="./add" class="btn btn-primary col-2">글등록</a>
-	</div>
+	<c:if test="${not empty member}">
+		<c:if test="${boardName eq 'notice'}">
+			<c:if test="${member.roleDTO.roleNum eq 1}">
+				<div class="row col-md-7 mx-auto">
+					<a href="./add" class="btn btn-primary col-2">글작성</a>
+				</div>
+			</c:if>
+		</c:if>
+		<c:if test="${boardName eq 'qna'}">
+				<div class="row col-md-7 mx-auto">
+					<a href="./add" class="btn btn-primary col-2">글작성</a>
+				</div>
+		</c:if>
+	</c:if>
 </div>
 
 <c:import url="../template/common_js.jsp"></c:import>

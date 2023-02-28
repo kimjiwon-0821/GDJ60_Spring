@@ -18,7 +18,7 @@
       <div class="row col-md-4 mx-auto my-5">
          <div class="fw-bold fs-5 col-12">
             <p>작성자</p>
-            <input type="text" name="writer" class="form-control" id="writer" placeholder="이름 입력"><br>
+            <input type="text" name="writer" readonly="readonly" value="${member.id}" class="form-control" id="writer" placeholder="이름 입력"><br>
          </div>
          <div class="fw-bold fs-5 col-12">
             <p>제목</p>
