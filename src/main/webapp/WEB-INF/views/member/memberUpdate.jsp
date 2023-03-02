@@ -30,7 +30,7 @@
 			<input type="text" name = "email" class="form-control" id="email" value="${dto.email}" >
 		</div>
 	
-		<button type="submit">수정</button>
+		<button type="submit" class="btn btn-outline-primary" >수정</button>
 	</form>
 
 </div>

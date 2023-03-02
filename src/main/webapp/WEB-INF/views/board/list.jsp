@@ -115,7 +115,7 @@
 		</c:if>
 		<c:if test="${boardName ne 'notice'}">
 				<div class="row col-md-7 mx-auto">
-					<a href="./add" class="btn btn-primary col-2">글작성</a>
+					<a href="./add" class="btn btn-outline-primary col-2">글작성</a>
 				</div>
 		</c:if>
 	</c:if>

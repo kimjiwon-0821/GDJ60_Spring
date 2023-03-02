@@ -10,9 +10,9 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<div class="container-fluid">
-	<div class = "row col-md-7">
-		<h1> member Login Page</h1>
+<div class="container-fluid my-5">
+	<div class="row mb-4 ">
+		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Member Login Page</h1>
 	</div>
 	
 	<div class = "row justify-content-center">

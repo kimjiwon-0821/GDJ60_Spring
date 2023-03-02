@@ -90,7 +90,7 @@
 		</div>
 	</div>
 	<div class="row col-md-7 mx-auto">
-		<a href="./add" class="btn btn-primary col-2">상품등록</a>
+		<a href="./add" class="btn btn-outline-primary col-2">상품등록</a>
 	</div>
 </div>
 <c:import url="../template/common_js.jsp"></c:import>
