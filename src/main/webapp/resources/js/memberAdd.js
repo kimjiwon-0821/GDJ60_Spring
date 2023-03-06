@@ -23,6 +23,37 @@ let emailCheck=false;
 
 //ID 검증
 id.addEventListener("blur",function(){
+    //중복검사
+    let xhttp = new XMLHttpRequest();
+
+    //URL, Method
+    xhttp.open("POST","./memberIdCheck");
+
+    //header
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    //요청 발생, POST일 경우 parameter 전송
+    xhttp.send("id="+id.value);
+
+    //응답처리
+    xhttp.addEventListener("readystatechange",function(){
+        if(this.readyState==4 && this.status==200){
+            if(this.responseText.trim()=='true'){
+                idResult.innerHTML='사용가능한 ID';
+                idResult.classList.add("blueResult")
+                idResult.classList.remove("redResult")
+            }else{
+                idResult.innerHTML='중복된 ID';
+                idResult.classList.add("redResult")
+                idResult.classList.remove("blueResult")
+            }
+        }
+        // if(this.readyState==4 && this.status!=200){
+
+        // }
+    });
+
+
     if(id.value.length!=0){
         idResult.innerHTML='정상적인 ID';
         idCheck=true;
@@ -136,7 +167,7 @@ email.addEventListener("blur",function(){
 
 //form 전송
 btn.addEventListener("click",function(){
-    //if(!checks.includes(false)) ->회원가입성
+    //if(!checks.includes(false)) ->회원가입성공
     if(idCheck&&pwLengthCheck&&pwNullCheck&&pwEqualCheck&&userCheck&&phoneCheck&&emailCheck){
         frm.submit();
     }else{

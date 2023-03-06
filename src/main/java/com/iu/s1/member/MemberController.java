@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberController {
 	@Autowired
 	private MemeberService memeberService;
+	@PostMapping("memberIdCheck")
+	public ModelAndView getMemberIdCheck(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		boolean check = memeberService.getMemberIdCheck(memberDTO);
+		mv.addObject("result",check);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
 	
 	@RequestMapping(value="memberAgree")
 	public ModelAndView setMemberAgree() throws Exception{
