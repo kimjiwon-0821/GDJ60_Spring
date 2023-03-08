@@ -24,4 +24,6 @@ public interface BoardDAO extends BbsDAO{
 	
 	//BoardFileDetail
 	public BoardFileDTO getBoardFileDetail(BoardFileDTO boardFileDTO) throws Exception;
+	
+	public int setBoardFileDelete(Long fileNum) throws Exception;
 }

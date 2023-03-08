@@ -66,11 +66,6 @@ public class FileDownView extends AbstractView {
 		os.close();
 		fi.close();
 		
-		
-		
-		
-		
 	}
 	
-
 }

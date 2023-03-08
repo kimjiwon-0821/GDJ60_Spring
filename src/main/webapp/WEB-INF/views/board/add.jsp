@@ -15,6 +15,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container-fluid my-5">
    <div class="row col-md-4 mx-auto text-center border-bottom border-dark pb-2">
+   <!-- board add -->
      <p class="fs-2">${boardName} Add Page</p>
    </div>
    <form action="./add" method = "post" enctype="multipart/form-data">
@@ -51,7 +52,7 @@
 <script src="../resources/js/fileManager.js"></script>
 <script>
    setMax(5);
-   setParam('files');
+   setParam('addFiles');
    $("#contents").summernote();
 </script>
 <c:import url="../template/common_js.jsp"></c:import>

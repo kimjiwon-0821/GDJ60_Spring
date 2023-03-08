@@ -17,7 +17,7 @@
 	</div>
 	
 	<div class = "container-fluid">
-		<div class = "row">
+		<div class = "row col-md-4 mx-auto my-5">
 			<h3>${dto.title}</h3>
 			<h3>${dto.writer}</h3>
 			<h3>${dto.regDate}</h3>

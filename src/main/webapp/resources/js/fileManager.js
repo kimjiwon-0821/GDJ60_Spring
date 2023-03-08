@@ -13,77 +13,127 @@ function setMax(m){
     max=m;
 }
 
-filelist.addEventListener("click",function(e){
-    if(e.target.classList.contains('dels')){
-        e.target.parentNode.remove();
-        // let id = e.target.getAttribute('data-dels-id');
-        // document.getElementById(id).remove();
-        count--;
-    }
+function setCount(c){
+    count=c;
+}
 
-});
-
-
-
-fileAdd.addEventListener("click",function(){
-    console.log("fileAdd Click");
-    if(count==max){
-        alert("첨부파일은 최대 "+max+"개까지 업로드 가능합니다.");
-        return ;
+$(".deleteCheck").click(function(){
+    if($(this).prop('checked')){
+        let result = confirm("파일이 영구히 삭제됩니다!");
+        if(result){
+            count--;
+        }else{
+            $(this).prop("checked",false);
+        }
     }else{
-        //Element, Text 생성
-        let div=document.createElement("div"); //부모div
-        let input = document.createElement("input");
-        let btn = document.createElement("button");
-        let n = document.createTextNode("X");
-
-        //Attribure 생성
-        //div attribute
-        let attr = document.createAttribute("class")
-        attr.value='input-group mb-3'
-        div.setAttributeNode(attr);
-
-        attr = document.createAttribute("id");
-        attr.value = 'f'+idx;
-        div.setAttributeNode(attr);
-
-        //input attribute
-        let arrtI =document.createAttribute("type");
-        arrtI.value='file'
-        input.setAttributeNode(arrtI);
-        arrtI = document.createAttribute("class")
-        arrtI.value='form-control'
-        input.setAttributeNode(arrtI);
-        arrtI=document.createAttribute("id");
-        arrtI.value='files'
-        input.setAttributeNode(arrtI);
-        arrtI=document.createAttribute("name");
-        arrtI.value=param;
-        input.setAttributeNode(arrtI);
-
-        //btn attribute
-        attr = document.createAttribute("type");
-        attr.value="button";
-        btn.setAttributeNode(attr);
-        attr = document.createAttribute("class");
-        attr.value="btn btn-outline-primary dels";
-        btn.setAttributeNode(attr);
-        btn.appendChild(n);
-
-        attr = document.createAttribute('data-dels-id');
-        attr.value = 'f'+idx;
-        btn.setAttributeNode(attr);
-        
-        //Element 조립
-        div.appendChild(input);
-        div.appendChild(btn);
-        filelist.prepend(div)
+        if(count>=5){
+            console.log("idx:",idx)
+            $("#f"+(idx-1)).remove();
+            return;
+        }
         count++;
-        idx++;
-        
-        // btn.addEventListener("click",function(){
-        //     div.remove();
-        //     count--;
-        // })
     }
 })
+
+//JS
+// filelist.addEventListener("click",function(e){
+//     if(e.target.classList.contains('dels')){
+//         e.target.parentNode.remove();
+//         // let id = e.target.getAttribute('data-dels-id');
+//         // document.getElementById(id).remove();
+//         count--;
+//     }
+
+// });
+//Jquery
+$("#filelist").on("click",".dels",function(e){
+    // let id = $(this).attr("data-dels-id");
+    // $("#"+id).remove();
+    $(this).parent().remove();
+    count--;
+})
+
+
+//JS
+//create해도 되고,
+// fileAdd.addEventListener("click",function(){
+//     console.log("fileAdd Click");
+//     if(count==max){
+//         alert("첨부파일은 최대 "+max+"개까지 업로드 가능합니다.");
+//         return ;
+//     }else{
+//         //Element, Text 생성
+//         let div=document.createElement("div"); //부모div
+//         let input = document.createElement("input");
+//         let btn = document.createElement("button");
+//         let n = document.createTextNode("X");
+
+//         //Attribure 생성
+//         //div attribute
+//         let attr = document.createAttribute("class")
+//         attr.value='input-group mb-3'
+//         div.setAttributeNode(attr);
+
+//         attr = document.createAttribute("id");
+//         attr.value = 'f'+idx;
+//         div.setAttributeNode(attr);
+
+//         //input attribute
+//         let arrtI =document.createAttribute("type");
+//         arrtI.value='file'
+//         input.setAttributeNode(arrtI);
+//         arrtI = document.createAttribute("class")
+//         arrtI.value='form-control'
+//         input.setAttributeNode(arrtI);
+//         arrtI=document.createAttribute("id");
+//         arrtI.value='files'
+//         input.setAttributeNode(arrtI);
+//         arrtI=document.createAttribute("name");
+//         arrtI.value=param;
+//         input.setAttributeNode(arrtI);
+
+//         //btn attribute
+//         attr = document.createAttribute("type");
+//         attr.value="button";
+//         btn.setAttributeNode(attr);
+//         attr = document.createAttribute("class");
+//         attr.value="btn btn-outline-primary dels";
+//         btn.setAttributeNode(attr);
+//         btn.appendChild(n);
+
+//         attr = document.createAttribute('data-dels-id');
+//         attr.value = 'f'+idx;
+//         btn.setAttributeNode(attr);
+        
+//         //Element 조립
+//         div.appendChild(input);
+//         div.appendChild(btn);
+//         filelist.prepend(div)
+//         count++;
+//         idx++;
+        
+//         // btn.addEventListener("click",function(){
+//         //     div.remove();
+//         //     count--;
+//         // })
+//     }
+// })
+
+//Jquery
+//문자열로 만들어도 됨.
+$("#fileAdd").click(()=>{
+    if(count>=max){
+        alert("첨부파일은 최대 "+max+"개까지 업로드 가능합니다.");
+        return ;
+        }else{
+            let child = '<div class="input-group mb-3" id="f'+idx+'">'
+                child = child+'<input type="file" class="form-control" name="'+param+'">'
+                child = child+'<button type="button" class="btn btn-outline-primary dels" data-dels-id="f'+idx+'">X</button>'
+            $("#filelist").append(child);
+            count++;
+            idx++;
+
+        }
+})
+
+
