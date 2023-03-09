@@ -18,21 +18,64 @@ function setCount(c){
 }
 
 $(".deleteCheck").click(function(){
-    if($(this).prop('checked')){
-        let result = confirm("파일이 영구히 삭제됩니다!");
-        if(result){
-            count--;
-        }else{
-            $(this).prop("checked",false);
-        }
+    let result = confirm("파일이 영구히 삭제됩니다!");
+    let ch = $(this);
+    if(result){
+        let fileNum = $(this).val();
+        $.ajax({
+            type:'POST',
+            url:'./boardFileDelete',
+            data:{
+                fileNum:fileNum //속성명:변수명
+            },
+            success:function(responces){
+                if(responces.trim()>0){
+                    alert("삭제되었습니다");
+                    //this : ajax 객체 자기 자신
+                    console.log(ch)
+                    ch.parent().parent().remove();
+                    count--;
+                }else{
+                    alert("삭제 실패<br> 관리자에게 문의 요망");
+                }
+            },
+            error:function(){
+
+            }
+        })
+
+        //Ajax DB에서 삭제
+        //fetch-GET
+        // fetch("URL?p=1",{
+        //     method:"GET"
+        // }).then((responces)=>responces.text())
+        // .then((res)=>{...})
+
+        //jquery-get
+        // $.get("URL?p=1",function(response){
+        //     //...
+        // })
+
+        //fetch-post
+        // fetch("URL",{
+        //     method:'POST',
+        //     headers:{
+        //         'contents-Type':'X'
+        //     },
+        //     body:"p=1"
+        // }).then((responces)=>responces.text())
+        // .then((res)=>{...})
+
+        //jquery-POST
+        //$.post("URL",{p:1},function(res){})
+
+        //jquery-GET/POST 통합
+        //상단에 코드 있음.
+
     }else{
-        if(count>=5){
-            console.log("idx:",idx)
-            $("#f"+(idx-1)).remove();
-            return;
-        }
-        count++;
+        $(this).prop('checked',false);
     }
+    
 })
 
 //JS

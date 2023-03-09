@@ -66,8 +66,10 @@ public class QnaService implements BoardService {
 			Long[] fileNums) throws Exception {
 		// TODO Auto-generated method stub
 		int result = qnaDAO.setBoardUpdate(bbsDTO);
-		for(Long fileNum : fileNums) {
-			qnaDAO.setBoardFileDelete(fileNum);
+		if(fileNums!=null) {
+			for(Long fileNum : fileNums) {
+				qnaDAO.setBoardFileDelete(fileNum);
+			}
 		}
 		String realPath = session.getServletContext().getRealPath("resources/upload/qna/");
 		System.out.println(realPath);
@@ -141,6 +143,14 @@ public class QnaService implements BoardService {
 	public BoardFileDTO getBoardFileDetail(BoardFileDTO boardFileDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return qnaDAO.getBoardFileDetail(boardFileDTO);
+	}
+	
+	
+	public int setBoardFileDelete(Long fileNum) throws Exception{
+		//HDD에 파일 삭제 
+		
+		
+		return qnaDAO.setBoardFileDelete(fileNum);
 	}
 
 }
