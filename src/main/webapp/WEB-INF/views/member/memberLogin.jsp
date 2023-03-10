@@ -19,11 +19,15 @@
       <form class="col-md-7" action="./memberLogin" method="post">
          <div class="mb-3">
 			<label for="id" class="form-label">아이디</label>
-	    	<input type="text" name="id" class="form-control" id="id"  placeholder="아이디 입력">
+	    	<input type="text" value="${cookie.rememberId.value}" name="id" class="form-control" id="id"  placeholder="아이디 입력">
 		</div>
         <div class="mb-3">
 			<label for="pw" class="form-label">비밀번호</label>
 	    	<input type="text" name="pw" class="form-control" id="pw"  placeholder="비밀번호 입력">
+		</div>
+		<div>
+			<input type="checkbox" name="remember" value="remember" class="form-check-input" id="">
+			<label class="form-label">아이디 기억하기</label>
 		</div>
 		<div class="mb-3">
 				<button class="btn btn-primary col-6" type="submit">로그인</button>
